@@ -2,6 +2,11 @@ bool thisBit;
 int waitTime = 500;
 bool stopSorting;
 short cookieType; //0 = choco chip, 1 = sugar, 2 = peanut butter, 3 = snickerdoodle
+short cookiesSorted;
+short chocoChipCount;
+short sugarCount;
+short pbCount;
+short snickerdoodleCount;
 
 void setup() 
 {
@@ -30,10 +35,41 @@ void loop()
 
   cookieType = random(0, 4);
   
-  if (!stopSorting)
+  if (!stopSorting && cookiesSorted < 10)
   {
-    Serial.println();
-    delay(waitTime);
-    Serial.print(cookieType);
+    if (cookieType == 0)
+    {
+      chocoChipCount++;
+    }
+
+    else if (cookieType == 1)
+    {
+      sugarCount++;
+    }
+
+    else if (cookieType == 2)
+    {
+      pbCount++;
+    }
+
+    else if (cookieType == 3)
+    {
+      snickerdoodleCount++;
+    }
+
+    cookiesSorted++;
+    Serial.print("\nCookies sorted: ");
+    Serial.print(cookiesSorted);
+  }
+
+  else if (cookiesSorted == 10)
+  {
+    stopSorting = true;
+    Serial.print("\nCookie Count: \n");
+    Serial.print(chocoChipCount); Serial.print(" chocolate chip cookies\n");
+    Serial.print(sugarCount); Serial.print(" sugar cookies\n");
+    Serial.print(pbCount); Serial.print(" peanut butter cookies\n");
+    Serial.print(snickerdoodleCount); Serial.print(" snickerdoodle cookies\n");
+    cookiesSorted = 0;
   }
 }
