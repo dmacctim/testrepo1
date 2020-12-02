@@ -11,6 +11,7 @@ short snickerdoodleCount;
 void setup() 
 {
   Serial.begin(9600);
+  randomSeed(analogRead(0));
 }
 
 void loop() 
@@ -34,7 +35,7 @@ void loop()
   }
 
   cookieType = random(0, 4);
-  
+    
   if (!stopSorting && cookiesSorted < 10)
   {
     if (cookieType == 0)
