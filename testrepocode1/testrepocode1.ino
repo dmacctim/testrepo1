@@ -1,5 +1,6 @@
 bool thisBit;
 int waitTime = 500;
+bool stopSorting;
 
 void setup() 
 {
@@ -10,7 +11,7 @@ void loop()
 {
   while (!thisBit)
   {
-    Serial.print("thisBit isn't ready yet");
+    Serial.print("Initializing cookie sorting machine...");
     delay(waitTime);
     for (short i = 10; i > 0; i--)
     {
@@ -21,8 +22,16 @@ void loop()
       if (i == 1)
       {
         thisBit = true;
-        Serial.print("\nAll done! thisBit is ready.");
+        Serial.print("\nCookie sorting machine initialized.");
       }
+    }
+  }
+
+  while (thisBit)
+  {
+    if (!stopSorting)
+    {
+      Serial.print("\nBegin cookie sorting");
     }
   }
 }
