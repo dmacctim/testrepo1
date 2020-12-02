@@ -1,6 +1,7 @@
 bool thisBit;
 int waitTime = 500;
 bool stopSorting;
+short cookieType; //0 = choco chip, 1 = sugar, 2 = peanut butter, 3 = snickerdoodle
 
 void setup() 
 {
@@ -27,11 +28,12 @@ void loop()
     }
   }
 
-  while (thisBit)
+  cookieType = random(0, 4);
+  
+  if (!stopSorting)
   {
-    if (!stopSorting)
-    {
-      Serial.print("\nBegin cookie sorting");
-    }
+    Serial.println();
+    delay(waitTime);
+    Serial.print(cookieType);
   }
 }
